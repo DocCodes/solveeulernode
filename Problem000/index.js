@@ -1,5 +1,4 @@
-const Problem00 = require('./Problem00.js')
-
 module.exports = [
-  ...Problem00
+  ...require('./Problem00.js'),
+  ...require('./Problem10.js')
 ]
