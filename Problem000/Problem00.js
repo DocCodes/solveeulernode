@@ -1,9 +1,9 @@
 const Problem = require('../Problem.js')
 
 /**
- * The problem counter reset
- * @type {Problem}
- */
+* The problem counter reset
+* @type {Problem}
+*/
 const Problem0 = new Problem(
   '',
   0,
@@ -14,9 +14,9 @@ const Problem0 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem1 = new Problem(
   'Multiples of 3 and 5',
   1,
@@ -31,9 +31,9 @@ const Problem1 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem2 = new Problem(
   'Even Fibonacci numbers',
   2,
@@ -52,9 +52,9 @@ const Problem2 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem3 = new Problem(
   'Largest prime factor',
   3,
@@ -73,9 +73,9 @@ const Problem3 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem4 = new Problem(
   'Largest palindrome product',
   4,
@@ -94,9 +94,9 @@ const Problem4 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem5 = new Problem(
   'Smallest multiple',
   5,
@@ -119,9 +119,9 @@ const Problem5 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem6 = new Problem(
   'Sum square difference',
   6,
@@ -141,9 +141,9 @@ const Problem6 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem7 = new Problem(
   '10001st prime',
   7,
@@ -172,9 +172,9 @@ const Problem7 = new Problem(
   }
 )
 /**
- * Solved 2018-10-16
- * @type {Problem}
- */
+* Solved 2018-10-16
+* @type {Problem}
+*/
 const Problem8 = new Problem(
   'Largest product in a series',
   8,
