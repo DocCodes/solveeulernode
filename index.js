@@ -30,35 +30,28 @@ const usage = commandLineUsage([
 ])
 // </region>
 
-if (args.help) {
+if (Object.keys(args).length === 0 || args.help) {
   console.log(usage)
 }
 
 if (args.problem) {
   if (args.problem >= 1 && args.problem <= problems.length) {
     let prob = problems[args.problem]
-    console.log(prob.name)
-    console.log(`Problem ${prob.number}`)
-    console.log(prob.desc)
-    console.log(`\n${prob.prompt}`)
+    prob.printProblem()
   }
 }
 
 if (args.solution) {
   if (args.solution >= 1 && args.solution <= problems.length) {
     let prob = problems[args.solution]
-    console.log(`Solution: ${prob.solution()}`)
+    prob.printSolution()
   }
 }
 
 if (args.full) {
   if (args.full >= 1 && args.full <= problems.length) {
     let prob = problems[args.full]
-    console.log(prob.name)
-    console.log(`Problem ${prob.number}`)
-    console.log(prob.desc)
-    console.log(`\n${prob.prompt}`)
-
-    console.log(`Solution: ${prob.solution()}`)
+    prob.printProblem()
+    prob.printSolution()
   }
 }
