@@ -1,0 +1,35 @@
+{
+  "name": "SolveEulerNode",
+  "version": "0.1.0",
+  "description": "Node Solutions for ProjectEuler.net",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "dependencies": {
+    "command-line-args": "^5.0.2",
+    "command-line-usage": "^5.0.5"
+  },
+  "engines": {
+    "node": "8.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DocCodes/euler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DocCodes/euler/issues"
+  },
+  "homepage": "https://github.com/DocCodes/euler#readme",
+  "keywords": [
+    "node",
+    "euler",
+    "programming",
+    "projecteuler"
+  ],
+  "author": "Evan Elias Young",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
