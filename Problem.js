@@ -1,18 +1,12 @@
 class Problem {
-  constructor (name, number, desc, prompt, solution, solved = true) {
-    this.name = name
-    this.number = number
-    this.desc = desc
-    this.prompt = prompt
+  constructor (id, solution, solved = true) {
+    this.id = id
     this.solution = solution
     this.solved = solved
   }
 
-  printProblem () {
-    console.log(this.name)
-    console.log(`Problem ${this.number}`)
-    console.log(this.desc)
-    console.log(`\n${this.prompt}`)
+  printURL () {
+    console.log(`https://projecteuler.net/problem=${this.id}`)
   }
 
   printSolution () {
