@@ -14,6 +14,7 @@ global.pkgInfo = JSON.parse(fs.readFileSync('package.json'))
 const options = [
   { name: 'problem', alias: 'p', description: 'Displays the solution of a problem.', type: Number },
   { name: 'stats', alias: 's', description: 'Displays the overall stats.', type: Boolean },
+  { name: 'url', alias: 'u', description: 'Displays the url of a problem.', type: Number },
   { name: 'help', alias: 'h', description: 'Displays this help message.', type: Boolean }
 ]
 global.args = commandLineArgs(options)
@@ -31,6 +32,13 @@ const usage = commandLineUsage([
 
 if (Object.keys(args).length === 0 || args.help) {
   console.log(usage)
+}
+
+if (args.url) {
+  if (args.problem >= 1 && args.problem <= problems.length) {
+    let prob = problems[args.problem]
+    prob.printURL()
+  }
 }
 
 if (args.stats) {
