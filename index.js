@@ -35,8 +35,8 @@ if (Object.keys(args).length === 0 || args.help) {
 }
 
 if (args.url) {
-  if (args.problem >= 1 && args.problem <= problems.length) {
-    let prob = problems[args.problem]
+  if (args.url >= 1 && args.url <= problems.length) {
+    let prob = problems[args.url]
     prob.printURL()
   }
 }
