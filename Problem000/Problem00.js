@@ -180,7 +180,7 @@ const Problem8 = new Problem(
     let sz = 13
     let sum = 0
 
-    for (var i = 0; i < num.length - sz; i++) {
+    for (let i = 0; i < num.length - sz; i++) {
       sum = num.substr(i, 13).split('').map(e => parseInt(e)).reduce((e, acc) => acc * e)
       if (sum >= mx) { mx = sum }
     }

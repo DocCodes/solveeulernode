@@ -52,6 +52,6 @@ if (args.stats) {
 if (args.problem) {
   if (args.problem >= 1 && args.problem <= problems.length) {
     let prob = problems[args.problem]
-    prob.printProblem()
+    prob.printSolution()
   }
 }
