@@ -1,6 +1,5 @@
 const Problem = require('../Problem.js')
 const BigInt = require('big-integer')
-const fs = require('fs')
 
 /**
 * Solved 2018-10-19
@@ -8,7 +7,7 @@ const fs = require('fs')
 */
 const Problem20 = new Problem(
   20,
-  () => {
+  function () {
     let tot = BigInt(100)
     for (let i = tot.minus(1); i > 0; i--) {
       tot = tot.times(i)
@@ -23,7 +22,7 @@ const Problem20 = new Problem(
 */
 const Problem21 = new Problem(
   21,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -32,14 +31,14 @@ const Problem21 = new Problem(
 */
 const Problem22 = new Problem(
   22,
-  () => {
-    let nm = JSON.parse(fs.readFileSync('./resources/p22.json'))
+  function () {
+    let names = this.loadResources()
     let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
     let tot = BigInt(0)
-    nm.sort()
-    for (let i = 0; i < nm.length; i++) {
+    names.sort()
+    for (let i = 0; i < names.length; i++) {
       let val = 0
-      for (let c of nm[i]) {
+      for (let c of names[i]) {
         val += alpha.indexOf(c) + 1
       }
       val *= (i + 1)
@@ -54,7 +53,7 @@ const Problem22 = new Problem(
 */
 const Problem23 = new Problem(
   23,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -63,7 +62,7 @@ const Problem23 = new Problem(
 */
 const Problem24 = new Problem(
   24,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -72,7 +71,7 @@ const Problem24 = new Problem(
 */
 const Problem25 = new Problem(
   25,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -81,7 +80,7 @@ const Problem25 = new Problem(
 */
 const Problem26 = new Problem(
   26,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -90,7 +89,7 @@ const Problem26 = new Problem(
 */
 const Problem27 = new Problem(
   27,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -99,7 +98,7 @@ const Problem27 = new Problem(
 */
 const Problem28 = new Problem(
   28,
-  () => {},
+  function () {},
   false
 )
 /**
@@ -108,7 +107,7 @@ const Problem28 = new Problem(
 */
 const Problem29 = new Problem(
   29,
-  () => {},
+  function () {},
   false
 )
 

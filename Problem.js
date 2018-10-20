@@ -1,3 +1,4 @@
+const fs = require('fs')
 class Problem {
   constructor (id, solution, solved = true) {
     this.id = id
@@ -15,6 +16,10 @@ class Problem {
     } else {
       console.log(`Solution: Unsolved`)
     }
+  }
+
+  loadResources () {
+    return JSON.parse(fs.readFileSync(`./resources/p${this.id}.json`))
   }
 }
 
