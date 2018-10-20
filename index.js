@@ -4,9 +4,14 @@
 const fs = require('fs')
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
-const problems = [
-  ...require('./Problem000/index.js')
-]
+var problems = []
+let problemHundreds = fs.readdirSync('.').filter((e) => e.match(/^Problem\d{3}$/))
+for (let dir of problemHundreds) {
+  let problemTens = fs.readdirSync(`./${dir}`).filter((e) => e.match(/^Problem\d{2}.js$/))
+  for (let p of problemTens) {
+    problems = [...problems, ...require(`./${dir}/${p}`)]
+  }
+}
 // </region>
 
 // <region> Constants & Globals
