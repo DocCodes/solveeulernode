@@ -64,13 +64,34 @@ const Problem22 = new Problem(
   }
 )
 /**
-* Unsolved
+* 2018-10-21
 * @type {Problem}
 */
 const Problem23 = new Problem(
   23,
-  function () {},
-  false
+  function () {
+    let abundants = []
+    let canBeWrittenAbundents = []
+    let sum = 0
+    for (let i = 2; i < 28124; i++) {
+      let sumFactors = 0
+      for (let j = 1; j < i; j++) {
+        if (i % j === 0) { sumFactors += j }
+      }
+      if (sumFactors > i) { abundants.push(i) }
+    }
+    for (let i = 0; i < abundants.length; i++) {
+      for (let j = 0; j < abundants.length; j++) {
+        canBeWrittenAbundents[abundants[i] + abundants[j]] = abundants[i] + abundants[j] > i
+      }
+    }
+    for (let i = 1; i < 28124; i++) {
+      if (!canBeWrittenAbundents[i]) {
+        sum += i
+      }
+    }
+    return sum
+  }
 )
 /**
 * Unsolved
@@ -82,7 +103,7 @@ const Problem24 = new Problem(
   false
 )
 /**
-* Unsolved
+* Solved 2018-10-20
 * @type {Problem}
 */
 const Problem25 = new Problem(

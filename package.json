@@ -1,6 +1,6 @@
 {
   "name": "SolveEulerNode",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "Node Solutions for ProjectEuler.net",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,9 @@
   "dependencies": {
     "big-integer": "^1.6.36",
     "command-line-args": "^5.0.2",
-    "command-line-usage": "^5.0.5"
+    "command-line-usage": "^5.0.5",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2"
   },
   "engines": {
     "node": "8.9.3"

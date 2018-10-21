@@ -1,4 +1,7 @@
 const fs = require('fs')
+const moment = require('moment')
+require('moment-duration-format')
+
 class Problem {
   constructor (id, solution, solved = true) {
     this.id = id
@@ -12,7 +15,9 @@ class Problem {
 
   printSolution () {
     if (this.solved) {
+      let start = moment()
       console.log(`Solution: ${this.solution()}`)
+      console.log(`Solution Took: ${moment.duration(moment() - start, 'milliseconds').format('S [ms]')}`)
     } else {
       console.log(`Solution: Unsolved`)
     }
