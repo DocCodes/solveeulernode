@@ -4,6 +4,9 @@
 const fs = require('fs')
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
+// </region>
+
+// <region> Load Problems
 var problems = []
 let problemHundreds = fs.readdirSync('.').filter((e) => e.match(/^Problem\d{3}$/))
 for (let dir of problemHundreds) {

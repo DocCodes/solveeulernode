@@ -76,13 +76,19 @@ const Problem12 = new Problem(
   }
 )
 /**
-* Unsolved
+* 2018-10-20
 * @type {Problem}
 */
 const Problem13 = new Problem(
   13,
-  () => {},
-  false
+  function () {
+    let nums = this.loadResources()
+    let sum = BigInt(0)
+    for (let st of nums) {
+      sum = sum.add(BigInt(st))
+    }
+    return sum.toString().substr(0, 10)
+  }
 )
 /**
 * Solved 2018-10-18
@@ -202,13 +208,23 @@ const Problem17 = new Problem(
   }
 )
 /**
-* Unsolved
+* 2018-10-20
 * @type {Problem}
 */
 const Problem18 = new Problem(
   18,
-  () => {},
-  false
+  function () {
+    let tri = this.loadResources()
+    while (tri.length !== 1) {
+      let crow = tri[tri.length - 2]
+      let nrow = tri[tri.length - 1]
+      for (let i = 0; i < crow.length; i++) {
+        crow[i] = crow[i] + Math.max(...nrow.slice(i, i + 2))
+      }
+      tri.pop()
+    }
+    return tri[0][0]
+  }
 )
 /**
 * Solved 2018-10-18

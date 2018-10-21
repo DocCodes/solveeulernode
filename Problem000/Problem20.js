@@ -17,13 +17,29 @@ const Problem20 = new Problem(
 )
 
 /**
-* Unsolved
+* Solved 2018-10-20
 * @type {Problem}
 */
 const Problem21 = new Problem(
   21,
-  function () {},
-  false
+  function () {
+    let li = []
+    let pairs = []
+    for (let i = 1; i <= 10000; i++) {
+      let s = 0
+      for (let j = 1; j < i; j++) {
+        if (i % j === 0) { s += j }
+      }
+      li.push(s)
+    }
+    for (let i = 0; i < 10000; i++) {
+      let e = li[i]
+      if (i + 1 < e && e >= 1 && e <= 10000 && li[e - 1] === i + 1) {
+        pairs.push([i + 1, e])
+      }
+    }
+    return pairs.reduce((acc, e) => acc + e.reduce((ecc, x) => ecc + x), 0)
+  }
 )
 /**
 * Solved 2018-10-19
@@ -71,8 +87,17 @@ const Problem24 = new Problem(
 */
 const Problem25 = new Problem(
   25,
-  function () {},
-  false
+  function () {
+    let temp = BigInt(1)
+    let fib = BigInt(0)
+    let i = 0
+    while (fib.toString().length < 1000) {
+      temp = fib.add(temp)
+      fib = temp.minus(fib)
+      i++
+    }
+    return i
+  }
 )
 /**
 * Unsolved
