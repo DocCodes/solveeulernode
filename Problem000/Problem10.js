@@ -9,16 +9,16 @@ const Problem10 = new Problem(
   10,
   function () {
     let sum = 0
-    let pr = true
-    for (let i = 2; i < 2000000; i++) {
-      pr = true
-      for (let j = 2; j <= Math.ceil(Math.sqrt(i)); j++) {
-        if (i % j === 0) {
-          pr = false
-          break
-        }
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
       }
-      if (pr) { sum += i }
+      return true
+    }
+
+    for (let i = 2; i < 2000000; i++) {
+      if (isPrime(i)) { sum += i }
     }
     return sum
   }
@@ -153,37 +153,8 @@ const Problem17 = new Problem(
   17,
   function () {
     let sum = 0
-    let ones = {
-      1: 'one',
-      2: 'two',
-      3: 'three',
-      4: 'four',
-      5: 'five',
-      6: 'six',
-      7: 'seven',
-      8: 'eight',
-      9: 'nine',
-      10: 'ten',
-      11: 'eleven',
-      12: 'twelve',
-      13: 'thirteen',
-      14: 'fourteen',
-      15: 'fifteen',
-      16: 'sixteen',
-      17: 'seventeen',
-      18: 'eighteen',
-      19: 'nineteen'
-    }
-    const tens = {
-      2: 'twenty',
-      3: 'thirty',
-      4: 'forty',
-      5: 'fifty',
-      6: 'sixty',
-      7: 'seventy',
-      8: 'eighty',
-      9: 'ninety'
-    }
+    let { ones, tens } = this.loadResources()
+
     for (let i = 1; i <= 1000; i++) {
       let parts = []
       let n = i

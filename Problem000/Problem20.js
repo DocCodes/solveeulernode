@@ -94,13 +94,26 @@ const Problem23 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem24 = new Problem(
   24,
-  function () {},
-  false
+  function () {
+    let digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let res = []
+    let n = 999999
+    for (let i = digits.length - 1; i > -1; i--) {
+      let fct = 1
+      for (let j = 1; j <= i; j++) {
+        fct *= j
+      }
+      let ind = Math.floor(n / fct)
+      n %= fct
+      res.push(digits.splice(ind, 1)[0])
+    }
+    return res.join('')
+  }
 )
 /**
 * Solved 2018-10-20
@@ -121,40 +134,103 @@ const Problem25 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem26 = new Problem(
   26,
-  function () {},
-  false
+  function () {
+    let seqLen = 0
+    for (var i = 1000; i > 1; i--) {
+      if (seqLen >= i) {
+        break
+      }
+      let rem = new Array(i).fill(0)
+      let val = 1
+      let p = 0
+
+      while (rem[val] === 0 && val !== 0) {
+        rem[val] = p
+        val *= 10
+        val %= i
+        p++
+      }
+
+      if (p - rem[val] > seqLen) {
+        seqLen = p - rem[val]
+      }
+    }
+    return ++i
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem27 = new Problem(
   27,
-  function () {},
-  false
+  function () {
+    let aMax = 0
+    let bMax = 0
+    let nMax = 0
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      for (let i = 2; i <= flr; i++) {
+        if (n % i === 0) { return false }
+      }
+      return true
+    }
+
+    for (let a = -1000; a <= 1000; a++) {
+      for (let b = -1000; b <= 1000; b++) {
+        let n = 0
+        while (isPrime(Math.abs(n * n + a * n + b))) {
+          n++
+        }
+        if (n > nMax) {
+          aMax = a
+          bMax = b
+          nMax = n
+        }
+      }
+    }
+    return aMax * bMax
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem28 = new Problem(
   28,
-  function () {},
-  false
+  function () {
+    let sum = 1
+    for (let i = 3; i < 1003; i += 2) {
+      for (let j = 0; j < 4; j++) {
+        sum += (i ** 2) - (j * (i - 1))
+      }
+    }
+    return sum
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem29 = new Problem(
   29,
-  function () {},
-  false
+  function () {
+    let li = []
+    for (let a = 2; a <= 100; a++) {
+      for (let b = 2; b <= 100; b++) {
+        let result = BigInt(a).pow(b)
+        if (!li.includes(result.toString())) {
+          li.push(result.toString())
+        }
+      }
+    }
+    return li.length
+  }
 )
 
 module.exports = [

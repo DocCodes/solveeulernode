@@ -85,18 +85,16 @@ const Problem4 = new Problem(
 const Problem5 = new Problem(
   5,
   function () {
-    let i = 1
-    let br = true
-    while (true) {
-      br = true
-      for (let j = 1; j <= 20; j++) {
-        if (i % j !== 0) {
-          br = false
-          break
-        }
+    let i = 0
+    const isDivTen = (n) => {
+      for (let i = 1; i <= 20; i++) {
+        if (n % i !== 0) { return false }
       }
-      if (br) { return i }
-      i++
+      return true
+    }
+
+    while (true) {
+      if (isDivTen(++i)) { return i }
     }
   }
 )
@@ -129,19 +127,19 @@ const Problem7 = new Problem(
     let pr = false
     let prNum = 0
     let prCtr = 0
-    let i = 2
+    let i = 1
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      for (let i = 2; i <= flr; i++) {
+        if (n % i === 0) { return false }
+      }
+      return true
+    }
 
     do {
-      pr = true
-      for (let j = 2; j < i; j++) {
-        if (i % j === 0) {
-          pr = false
-          break
-        }
-      }
+      pr = isPrime(++i)
       prCtr += pr ? 1 : 0
       prNum = pr ? i : prNum
-      i++
     } while (prCtr < 10001)
 
     return prNum

@@ -38,28 +38,27 @@ const usage = commandLineUsage([
 ])
 // </region>
 
-if (Object.keys(args).length === 0 || args.help) {
+if (args.help) {
   console.log(usage)
-}
-
-if (args.url) {
+} else if (args.stats) {
+  let solved = problems.reduce((acc, e) => acc + (e.solved ? 1 : 0), -1)
+  let total = 638
+  console.log(`Level: ${Math.floor(solved / 25)}`)
+  console.log(`Solved: ${solved}`)
+  console.log(`Total: ${total}`)
+  console.log(`Percent: ${(solved / total * 100).toFixed(2)}%`)
+} else if (args.url) {
   if (args.url >= 1 && args.url <= problems.length) {
     let prob = problems[args.url]
     prob.printURL()
   }
-}
-
-if (args.stats) {
-  let solved = problems.reduce((acc, e) => acc + (e.solved ? 1 : 0), -1)
-  let total = 638
-  console.log(`Solved: ${solved}`)
-  console.log(`Total: ${total}`)
-  console.log(`Percent: ${(solved / total * 100).toFixed(2)}%`)
-}
-
-if (args.problem) {
-  if (args.problem >= 1 && args.problem <= problems.length) {
-    let prob = problems[args.problem]
-    prob.printSolution()
+} else if (args.problem) {
+  if (args.problem) {
+    if (args.problem >= 1 && args.problem <= problems.length) {
+      let prob = problems[args.problem]
+      prob.printSolution()
+    }
   }
+} else {
+  console.log(usage)
 }
