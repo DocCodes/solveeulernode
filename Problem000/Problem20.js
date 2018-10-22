@@ -103,11 +103,15 @@ const Problem24 = new Problem(
     let digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     let res = []
     let n = 999999
-    for (let i = digits.length - 1; i > -1; i--) {
-      let fct = 1
-      for (let j = 1; j <= i; j++) {
-        fct *= j
+    let factorial = (n) => {
+      for (let i = n - 1; i > 1; i--) {
+        n *= i
       }
+      return n
+    }
+
+    for (let i = digits.length - 1; i > -1; i--) {
+      let fct = factorial(i)
       let ind = Math.floor(n / fct)
       n %= fct
       res.push(digits.splice(ind, 1)[0])
