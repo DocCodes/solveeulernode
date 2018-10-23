@@ -77,13 +77,48 @@ const Problem32 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-23
 * @type {Problem}
 */
 const Problem33 = new Problem(
   33,
-  function () {},
-  false
+  function () {
+    let num = 1
+    let dom = 1
+    const makeSet = (li) => { return Array.from(new Set(li)) }
+    const intArray = (i) => { return i.toString().split('') }
+    const shouldSkip = (i, j) => {
+      let comboAry = [...intArray(i), ...intArray(j)]
+      if (i === j) { return true }
+      if (i % 10 === 0) { return true }
+      if (j % 10 === 0) { return true }
+      if (makeSet(intArray(i)).length === 1) { return true }
+      if (makeSet(intArray(j)).length === 1) { return true }
+      return comboAry.length === makeSet(comboAry).length
+    }
+    const getShared = (i, j) => {
+      for (let d of makeSet([...intArray(i), ...intArray(j)])) {
+        if (i.toString().includes(d) && j.toString().includes(d)) {
+          return d
+        }
+      }
+    }
+
+    for (let i = 2; i < 100; i++) {
+      for (let j = 1; j < i; j++) {
+        if (shouldSkip(i, j)) { continue }
+        let sh = getShared(i, j)
+        let newI = parseInt(i.toString().replace(sh, ''))
+        let newJ = parseInt(j.toString().replace(sh, ''))
+        if (j / i === newJ / newI) {
+          num *= newJ
+          dom *= newI
+        }
+      }
+    }
+
+    return dom / num
+  }
 )
 /**
 * Solved 2018-10-22
@@ -118,31 +153,95 @@ const Problem34 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-23
 * @type {Problem}
 */
 const Problem35 = new Problem(
   35,
-  function () {},
-  false
+  function () {
+    let tot = 0
+    const isPrime = (n) => {
+      if (n === 0 || n === 1) { return false }
+      for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {
+        if (n % i === 0) { return false }
+      }
+      return true
+    }
+    const isCirclePrime = (n) => {
+      let st = n.toString().split('')
+      for (let i = 0; i < st.length; i++) {
+        st.push(st.shift())
+        if (!isPrime(parseInt(st.join('')))) { return false }
+      }
+      return true
+    }
+
+    for (var i = 2; i < 1000000; i++) {
+      if (isCirclePrime(i)) {
+        tot++
+      }
+    }
+    return tot
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-23
 * @type {Problem}
 */
 const Problem36 = new Problem(
   36,
-  function () {},
-  false
+  function () {
+    let sum = 0
+    const isPalindrome = (st) => {
+      return st.split('').reverse().join('') === st
+    }
+    for (var i = 0; i < 1000000; i++) {
+      if (isPalindrome(i.toString()) && isPalindrome(i.toString(2))) {
+        sum += i
+      }
+    }
+    return sum
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-23
 * @type {Problem}
 */
 const Problem37 = new Problem(
   37,
-  function () {},
-  false
+  function () {
+    let tot = 0
+    let cnt = 11
+    let i = 10
+    const isPrime = (n) => {
+      if (n === 0 || n === 1) { return false }
+      for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {
+        if (n % i === 0) { return false }
+      }
+      return true
+    }
+    const isTruncPrime = (n) => {
+      let st = n.toString().split('')
+      while (st.length !== 0) {
+        if (!isPrime(parseInt(st.join('')))) { return false }
+        st.shift()
+      }
+      st = n.toString().split('')
+      while (st.length !== 0) {
+        if (!isPrime(parseInt(st.join('')))) { return false }
+        st.pop()
+      }
+      return true
+    }
+    while (cnt !== 0) {
+      if (isTruncPrime(++i)) {
+        console.log(i)
+        tot += i
+        cnt--
+      }
+    }
+    return tot
+  }
 )
 /**
 * Unsolved
