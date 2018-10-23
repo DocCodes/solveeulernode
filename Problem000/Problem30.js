@@ -49,13 +49,32 @@ const Problem31 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem32 = new Problem(
   32,
-  function () {},
-  false
+  function () {
+    let li = []
+    const isPandigital = (n) => {
+      let st = n.join('')
+      if (st.length !== 9) { return false }
+      for (var i = 9; i >= 1; i--) {
+        if (!st.includes(i)) { return false }
+      }
+      return true
+    }
+
+    for (var i = 1; i < 9 ** 4; i++) {
+      for (var j = i; j < 9 ** 4; j++) {
+        if ([i, j, i * j].join('').length > 9) { break }
+        if (isPandigital([i, j, i * j]) && !li.includes(i * j)) {
+          li.push(i * j)
+        }
+      }
+    }
+    return li.reduce((acc, e) => acc + e, 0)
+  }
 )
 /**
 * Unsolved
@@ -67,13 +86,36 @@ const Problem33 = new Problem(
   false
 )
 /**
-* Unsolved
+* Solved 2018-10-22
 * @type {Problem}
 */
 const Problem34 = new Problem(
   34,
-  function () {},
-  false
+  function () {
+    let sum = 0
+    const factorial = (i) => {
+      if (i === 0) { return 1 }
+      for (let j = i - 1; j > 1; j--) {
+        i *= j
+      }
+      return i
+    }
+    const factsEqualOriginal = (i, digits) => {
+      let sum = 0
+      for (let d of digits) {
+        sum += factorial(d)
+        if (sum > i) { return false }
+      }
+      return sum === i
+    }
+    for (let i = 10; i < factorial(9); i++) {
+      let digits = i.toString().split('').map(e => parseInt(e))
+      if (factsEqualOriginal(i, digits)) {
+        sum += i
+      }
+    }
+    return sum
+  }
 )
 /**
 * Unsolved

@@ -8,7 +8,7 @@ Node Solutions for ProjectEuler.net
 
 |     Statistic      |  Value  |
 |--------------------|---------|
-|   Problems Solved  |    31   |
+|   Problems Solved  |   33    |
 |   Total Problems   |   638   |
-|   Percent Solved   |  4.86%  |
+|   Percent Solved   |  5.17%  |
 | Average Difficulty |   5%    |
