@@ -244,22 +244,64 @@ const Problem37 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-24
 * @type {Problem}
 */
 const Problem38 = new Problem(
   38,
-  function () {},
-  false
+  function () {
+    const isPandigital = (n) => {
+      let st = n.toString()
+      for (var i = 9; i >= 1; i--) {
+        if (!st.includes(i)) { return false }
+      }
+      return true
+    }
+    const isPandigitalProduct = (n) => {
+      let concat = n.toString()
+      for (let i = 2; i <= 9; i++) {
+        concat += (n * i).toString()
+        if (concat.length < 9) { continue }
+        if (concat.length > 9) { return false }
+        if (isPandigital(concat)) { return [true, concat] }
+        return false
+      }
+    }
+
+    let lg = isPandigitalProduct(192)
+    for (let i = 193; i < 10 ** 5; i++) {
+      if (isPandigitalProduct(i)[0]) {
+        lg = isPandigitalProduct(i)
+      }
+    }
+    return lg[1]
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-25
 * @type {Problem}
 */
 const Problem39 = new Problem(
   39,
-  function () {},
-  false
+  function () {
+    let pCount = new Array(1001).fill(0)
+    const isRightTriangle = (a, b, c) => {
+      return a ** 2 + b ** 2 === c ** 2
+    }
+
+    for (let p = 2; p < 1001; p += 2) {
+      for (let c = 1; c < p; c++) {
+        for (let b = 1; b < p - c; b++) {
+          let a = p - b - c
+          if (a + b + c !== p) { break }
+          if (isRightTriangle(a, b, c)) {
+            pCount[p]++
+          }
+        }
+      }
+    }
+    return pCount.indexOf(Math.max(...pCount))
+  }
 )
 
 module.exports = [
