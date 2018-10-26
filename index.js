@@ -42,7 +42,7 @@ if (args.help) {
   console.log(usage)
 } else if (args.stats) {
   let solved = problems.reduce((acc, e) => acc + (e.solved ? 1 : 0), -1)
-  let total = 638
+  let total = 639
   console.log(`Level: ${Math.floor(solved / 25)}`)
   console.log(`Solved: ${solved}`)
   console.log(`Total: ${total}`)
