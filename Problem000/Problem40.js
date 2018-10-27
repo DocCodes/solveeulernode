@@ -74,40 +74,135 @@ const Problem42 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-27
 * @type {Problem}
 */
 const Problem43 = new Problem(
   43,
-  function () {},
-  false
+  function () {
+    let sum = 0
+    const containsDupes = (st) => { return !(new Set(st).size === st.split('').length) }
+    let uniqueThree = new Array(900).fill(1).map((e, i) => i + 100).filter((e) => !containsDupes(e.toString()))
+    let firstThree = uniqueThree.filter((e) => e % 2 === 0)
+    let midThree = uniqueThree.filter((e) => e % 7 === 0)
+    let lastThree = uniqueThree.filter((e) => e % 17 === 0)
+    let lastSix = []
+    midThree.forEach((e) => {
+      lastThree.forEach((i) => {
+        lastSix.push(`${e}${i}`)
+      })
+    })
+    lastSix = lastSix.filter((e) => {
+      if (containsDupes(e)) { return false }
+      if (e[1] % 5 !== 0) { return false }
+      if (e.slice(1, 4) % 11 !== 0) { return false }
+      if (e.slice(2, 5) % 13 !== 0) { return false }
+      return true
+    })
+
+    for (let f = 1; f < 10; f++) {
+      for (let beg of firstThree) {
+        for (let end of lastSix) {
+          let st = `${f}${beg}${end}`
+          if (containsDupes(st)) { continue }
+          if (st.slice(2, 5) % 3 !== 0) { continue }
+          console.log(st)
+          sum += parseInt(st)
+        }
+      }
+    }
+    return sum
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-27
 * @type {Problem}
 */
 const Problem44 = new Problem(
   44,
-  function () {},
-  false
+  function () {
+    let k = 1
+    const isPentagonal = (n) => {
+      let penTest = (Math.sqrt(24 * n + 1) + 1) / 6
+      return penTest === parseInt(penTest)
+    }
+
+    while (true) {
+      let n = ++k * (3 * k - 1) / 2
+      for (let j = k - 1; j > 0; j--) {
+        let m = j * (3 * j - 1) / 2
+        if (isPentagonal(n - m) && isPentagonal(n + m)) {
+          return n - m
+        }
+      }
+    }
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-27
 * @type {Problem}
 */
 const Problem45 = new Problem(
   45,
-  function () {},
-  false
+  function () {
+    let i = 285
+    const getTriangle = (n) => { return n * (n + 1) / 2 }
+    const isPentagonal = (n) => {
+      let penTest = (Math.sqrt(24 * n + 1) + 1) / 6
+      return penTest === parseInt(penTest)
+    }
+    const isHexagonal = (n) => {
+      let hexTest = (Math.sqrt(8 * n + 1) + 1) / 4
+      return hexTest === parseInt(hexTest)
+    }
+
+    while (true) {
+      let tri = getTriangle(++i)
+      if (isHexagonal(tri)) {
+        if (isPentagonal(tri)) {
+          return tri
+        }
+      }
+    }
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-27
 * @type {Problem}
 */
 const Problem46 = new Problem(
   46,
-  function () {},
-  false
+  function () {
+    let i = 1
+    let j = 0
+    let found = false
+    const isSquare = (n) => {
+      let sqTest = Math.sqrt(n / 2)
+      return sqTest === parseInt(sqTest)
+    }
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
+      }
+      return true
+    }
+    let primeList = new Array(100000).fill(0).map((e, i) => i * 2 + 1).filter((e) => isPrime(e))
+
+    while (!found) {
+      found = true
+      j = 0
+      i += 2
+      while (i >= primeList[j]) {
+        if (isSquare(i - primeList[j])) {
+          found = false
+          break
+        }
+        j++
+      }
+    }
+    return i
+  }
 )
 /**
 * Unsolved
