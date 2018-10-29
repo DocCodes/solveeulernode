@@ -85,7 +85,7 @@ const Problem4 = new Problem(
 const Problem5 = new Problem(
   5,
   function () {
-    let i = 0
+    let i = 20
     const isDivTen = (n) => {
       for (let i = 1; i <= 20; i++) {
         if (n % i !== 0) { return false }
@@ -94,7 +94,7 @@ const Problem5 = new Problem(
     }
 
     while (true) {
-      if (isDivTen(++i)) { return i }
+      if (isDivTen(i += 20)) { return i }
     }
   }
 )

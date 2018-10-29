@@ -205,13 +205,59 @@ const Problem46 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-28
 * @type {Problem}
 */
 const Problem47 = new Problem(
   47,
-  function () {},
-  false
+  function () {
+    let runGoal = 4
+    let i = 0
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
+      }
+      return true
+    }
+    const getFactoredFactors = (li) => {
+      let ret = []
+      let prev
+      li.forEach((e, i) => {
+        if (e !== prev) {
+          ret.push(e)
+        } else {
+          ret[ret.length - 1] *= e
+        }
+        prev = e
+      })
+      return ret
+    }
+    const getPrimeFactors = (n) => {
+      let li = []
+      for (let i = 2; i <= n; i++) {
+        while (n % i === 0) {
+          li.push(i)
+          n /= i
+        }
+      }
+      return getFactoredFactors(li)
+    }
+
+    while (true) {
+      let skipIter = false
+      let comboArr = []
+      i += runGoal - 1
+      for (let j = 0; j < runGoal; j++) {
+        if (isPrime(i + j)) { skipIter = true; break }
+        let primeFacts = getPrimeFactors(i + j)
+        if (primeFacts.length < runGoal) { skipIter = true; break }
+        comboArr.push(...primeFacts)
+      }
+      if (skipIter) { continue }
+      if (new Set(comboArr).size === comboArr.length) { return i }
+    }
+  }
 )
 /**
 * Unsolved
