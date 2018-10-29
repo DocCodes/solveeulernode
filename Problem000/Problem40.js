@@ -1,4 +1,5 @@
 const Problem = require('../Problem.js')
+const BigInt = require('big-integer')
 
 /**
 * Solved 2018-10-25
@@ -187,7 +188,14 @@ const Problem46 = new Problem(
       }
       return true
     }
-    let primeList = new Array(100000).fill(0).map((e, i) => i * 2 + 1).filter((e) => isPrime(e))
+    const ESieve = (mn, mx) => {
+      let li = []
+      for (let i = mn; i < mx; i++) {
+        if (isPrime(i)) { li.push(i) }
+      }
+      return li
+    }
+    let primeList = ESieve(2, 10000)
 
     while (!found) {
       found = true
@@ -260,22 +268,56 @@ const Problem47 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-29
 * @type {Problem}
 */
 const Problem48 = new Problem(
   48,
-  function () {},
-  false
+  function () {
+    let runner = BigInt(0)
+    for (let i = 1; i <= 1000; i++) {
+      runner = runner.add(BigInt(i).pow(i))
+    }
+    return runner.toString().slice(runner.toString().length - 10)
+  }
 )
 /**
-* Unsolved
+* Solved 2018-10-29
 * @type {Problem}
 */
 const Problem49 = new Problem(
   49,
-  function () {},
-  false
+  function () {
+    const isPermutation = (a, b) => {
+      return a.toString().split('').sort().join('') === b.toString().split('').sort().join('')
+    }
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
+      }
+      return true
+    }
+    const ESieve = (mn, mx) => {
+      let li = []
+      for (let i = mn; i < mx; i++) {
+        if (isPrime(i)) { li.push(i) }
+      }
+      return li
+    }
+    let primeList = ESieve(1489, 10000)
+
+    for (let i = 0; i < primeList.length; i++) {
+      for (let j = i + 1; j < primeList.length; j++) {
+        let k = primeList[j] + (primeList[j] - primeList[i])
+        if (k < 10000 && primeList.includes(k)) {
+          if (isPermutation(primeList[i], primeList[j]) && isPermutation(primeList[i], k)) {
+            return `${primeList[i]}${primeList[j]}${k}`
+          }
+        }
+      }
+    }
+  }
 )
 
 module.exports = [
