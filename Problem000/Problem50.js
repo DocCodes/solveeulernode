@@ -1,4 +1,5 @@
 const Problem = require('../Problem.js')
+const BigInt = require('big-integer')
 
 /**
 * Unsolved
@@ -44,12 +45,33 @@ const Problem52 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-10-30
 * @type {Problem}
 */
 const Problem53 = new Problem(
   53,
-  function () {}
+  function () {
+    const factorial = (n) => {
+      if (n.equals(0)) { return BigInt(1) }
+      for (let i = n.minus(1); i > 1; i--) {
+        n = n.times(i)
+      }
+      return n
+    }
+    const getCombinations = (n, r) => {
+      return factorial(n).divide(factorial(r).times(factorial(n.minus(r))))
+    }
+    let sum = 0
+
+    for (let n = BigInt(23); n <= BigInt(100); n = n.add(1)) {
+      for (let r = BigInt(1); r <= n; r = r.add(1)) {
+        if (getCombinations(n, r) >= 10 ** 6) {
+          sum++
+        }
+      }
+    }
+    return sum
+  }
 )
 /**
 * Unsolved
@@ -60,12 +82,36 @@ const Problem54 = new Problem(
   function () {}
 )
 /**
-* Unsolved
+* Solved 2018-10-30
 * @type {Problem}
 */
 const Problem55 = new Problem(
   55,
-  function () {}
+  function () {
+    const getReverse = (n) => {
+      let st = n.toString().split('')
+      st.reverse()
+      return parseInt(st.join(''))
+    }
+    const isPalindrome = (n) => {
+      let st = n.toString().split('')
+      st.reverse()
+      return st.join('') === n.toString()
+    }
+    let sum = 0
+
+    for (let i = 0; i < 10000; i++) {
+      let curNum = i
+      for (let loops = 0; loops < 50; loops++) {
+        curNum = curNum + getReverse(curNum)
+        if (isPalindrome(curNum)) {
+          sum++
+          break
+        }
+      }
+    }
+    return 10000 - sum
+  }
 )
 /**
 * Unsolved

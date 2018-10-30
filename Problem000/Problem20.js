@@ -103,7 +103,7 @@ const Problem24 = new Problem(
     let digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     let res = []
     let n = 999999
-    let factorial = (n) => {
+    const factorial = (n) => {
       for (let i = n - 1; i > 1; i--) {
         n *= i
       }
