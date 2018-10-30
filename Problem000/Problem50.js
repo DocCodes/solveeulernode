@@ -2,12 +2,50 @@ const Problem = require('../Problem.js')
 const BigInt = require('big-integer')
 
 /**
-* Unsolved
+* Solved 2018-10-30
 * @type {Problem}
 */
 const Problem50 = new Problem(
   50,
-  function () {}
+  function () {
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      if (n === 0 || n === 1) { return false }
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
+      }
+      return true
+    }
+    const ESieve = (mn, mx) => {
+      let li = []
+      for (let i = mn; i < mx; i++) {
+        if (isPrime(i)) { li.push(i) }
+      }
+      return li
+    }
+    let limit = 1000000
+    let result = 0
+    let numberPrimes = 0
+    let primeList = ESieve(2, limit)
+    let primeSumList = new Array(primeList.length).fill(0)
+
+    primeSumList[0] = 0
+    for (let i = 0; i < primeList.length; i++) {
+      primeSumList[i + 1] = primeSumList[i] + primeList[i]
+    }
+
+    for (let i = numberPrimes; i < primeSumList.length; i++) {
+      for (let j = i - (numberPrimes + 1); j >= 0; j--) {
+        if (primeSumList[i] - primeSumList[j] > limit) { break }
+
+        if (primeList.includes(primeSumList[i] - primeSumList[j])) {
+          numberPrimes = i - j
+          result = primeSumList[i] - primeSumList[j]
+        }
+      }
+    }
+    return result
+  }
 )
 /**
 * Unsolved
@@ -130,12 +168,31 @@ const Problem57 = new Problem(
   function () {}
 )
 /**
-* Unsolved
+* Solved 2018-10-30
 * @type {Problem}
 */
 const Problem58 = new Problem(
   58,
-  function () {}
+  function () {
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      if (n === 0 || n === 1) { return false }
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
+      }
+      return true
+    }
+    let totPrimes = 0
+    let sln = 3
+
+    do {
+      for (let i = 0; i < 4; i++) {
+        if (isPrime((sln ** 2) - (i * (sln - 1)))) { totPrimes++ }
+      }
+      sln += 2
+    } while (totPrimes / (sln * 2 - 1) > 0.10)
+    return sln
+  }
 )
 /**
 * Unsolved
