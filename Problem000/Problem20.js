@@ -1,5 +1,6 @@
 const Problem = require('../Problem.js')
-const BigInt = require('big-integer')
+const BigNum = require('bignumber.js')
+BigNum.config({ DECIMAL_PLACES: 50, EXPONENTIAL_AT: 1e+9 })
 
 /**
 * Solved 2018-10-19
@@ -8,9 +9,9 @@ const BigInt = require('big-integer')
 const Problem20 = new Problem(
   20,
   function () {
-    let tot = BigInt(100)
+    let tot = BigNum(100)
     for (let i = tot.minus(1); i > 0; i--) {
-      tot = tot.times(i)
+      tot = tot.multipliedBy(i)
     }
     return tot.toString().split('').map(e => parseInt(e)).reduce((acc, e) => acc + e, 0)
   }
@@ -50,7 +51,7 @@ const Problem22 = new Problem(
   function () {
     let names = this.loadResources()
     let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
-    let tot = BigInt(0)
+    let tot = BigNum(0)
     names.sort()
     for (let i = 0; i < names.length; i++) {
       let val = 0
@@ -58,7 +59,7 @@ const Problem22 = new Problem(
         val += alpha.indexOf(c) + 1
       }
       val *= (i + 1)
-      tot = tot.add(val)
+      tot = tot.plus(val)
     }
     return tot
   }
@@ -126,11 +127,11 @@ const Problem24 = new Problem(
 const Problem25 = new Problem(
   25,
   function () {
-    let temp = BigInt(1)
-    let fib = BigInt(0)
+    let temp = BigNum(1)
+    let fib = BigNum(0)
     let i = 0
     while (fib.toString().length < 1000) {
-      temp = fib.add(temp)
+      temp = fib.plus(temp)
       fib = temp.minus(fib)
       i++
     }
@@ -227,7 +228,7 @@ const Problem29 = new Problem(
     let li = []
     for (let a = 2; a <= 100; a++) {
       for (let b = 2; b <= 100; b++) {
-        let result = BigInt(a).pow(b)
+        let result = BigNum(a).exponentiatedBy(b)
         if (!li.includes(result.toString())) {
           li.push(result.toString())
         }

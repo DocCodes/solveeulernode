@@ -1,5 +1,6 @@
 const Problem = require('../Problem.js')
-const BigInt = require('big-integer')
+const BigNum = require('bignumber.js')
+BigNum.config({ DECIMAL_PLACES: 50, EXPONENTIAL_AT: 1e+9 })
 
 /**
 * Solved 2018-10-17
@@ -83,9 +84,9 @@ const Problem13 = new Problem(
   13,
   function () {
     let nums = this.loadResources()
-    let sum = BigInt(0)
+    let sum = BigNum(0)
     for (let st of nums) {
-      sum = sum.add(BigInt(st))
+      sum = sum.plus(BigNum(st))
     }
     return sum.toString().substr(0, 10)
   }
@@ -141,7 +142,7 @@ const Problem15 = new Problem(
 const Problem16 = new Problem(
   16,
   function () {
-    let num = BigInt(2).pow(1000)
+    let num = BigNum(2).exponentiatedBy(1000)
     return num.toString().split('').map(e => parseInt(e)).reduce((acc, e) => acc + e)
   }
 )
