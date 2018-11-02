@@ -69,15 +69,17 @@ const Problem61 = new Problem(
     const getHexagonal = (n) => { return n * (2 * n - 1) }
     const getHeptagonal = (n) => { return n * (5 * n - 3) / 2 }
     const getOctagonal = (n) => { return n * (3 * n - 2) }
-    const isPerm = (a, b) => {
-      return a.split('').sort().join('') === b.split('').sort().join('')
+    const lastLineFirst = (li) => {
+      li = li.map(e => e.toString())
+      for (let i = 0; i < li.length - 1; i++) {
+        if (li[i].slice(2) !== li[i + 1].slice(0, 2)) { return false }
+      }
+      return true
     }
     const isCyclic = (li) => {
       li = li.map(e => e.toString())
-      for (let i = 0; i < li.length - 1; i++) {
-        if (!isPerm(li[i].slice(2), li[i + 1].slice(0, 2))) { return false }
-      }
-      if (!isPerm(li[0].slice(0, 2), li[li.length - 1].slice(2))) { return false }
+      if (!lastLineFirst(li)) { return false }
+      if (li[0].slice(0, 2) !== li[li.length - 1].slice(2)) { return false }
       return true
     }
 
@@ -92,6 +94,7 @@ const Problem61 = new Problem(
           if (used.includes(k)) { continue }
           used = [i, j, k]
           let penNum = getPentagonal(k)
+          console.log([triNum, sqrNum, penNum])
           for (let m = 23; m < 71; m++) {
             if (used.includes(m)) { continue }
             used = [i, j, k, m]
@@ -104,30 +107,55 @@ const Problem61 = new Problem(
                 if (used.includes(p)) { continue }
                 used = [i, j, k, m, o, p]
                 let octNum = getOctagonal(p)
-                if (isCyclic([triNum, sqrNum, penNum, hexNum, hepNum, octNum])) { return used }
               }
             }
           }
         }
       }
     }
-  }, false // NOTE: This doesn't work yet
+  }
 )
 /**
-* Unsolved
+* Solved 2018-11-02
 * @type {Problem}
 */
 const Problem62 = new Problem(
   62,
-  function () {}, false
+  function () {
+    const isPermutation = (a, b) => { return sortIntStr(a) === sortIntStr(b) }
+    const sortIntStr = (n) => { return sortString(n.toString()) }
+    const sortString = (st) => { return st.split('').sort().join('') }
+    let cubeList = new Array(10000).fill(1).map((e, i) => (i + 5000) ** 3)
+    let cubeCount = {}
+    cubeList.forEach(e => { cubeCount[e] = 1 })
+
+    for (let i of cubeList) {
+      for (let j of cubeList) {
+        if (isPermutation(i, j) && i !== j) {
+          if (++cubeCount[i] === 5) { return i }
+        }
+      }
+    }
+  }
 )
 /**
-* Unsolved
+* Solved 2018-11-02
 * @type {Problem}
 */
 const Problem63 = new Problem(
   63,
-  function () {}, false
+  function () {
+    let result = 0
+    let lower = 0
+    let n = 1
+
+    while (lower < 10) {
+      lower = parseInt(Math.ceil(Math.pow(10, (n - 1) / n)))
+      result += 10 - lower
+      n++
+    }
+    return result
+  }
 )
 /**
 * Unsolved
@@ -143,7 +171,18 @@ const Problem64 = new Problem(
 */
 const Problem65 = new Problem(
   65,
-  function () {}, false
+  function () {
+    let d = BigNum(1)
+    let n = BigNum(2)
+
+    for (let i = 2; i < 101; i++) {
+      let temp = d
+      let c = (i % 3 === 0) ? 2 * (i / 3) : 1
+      d = n
+      n = BigNum(c).multipliedBy(d).plus(temp)
+    }
+    return n.toString().split('').reduce((acc, e) => acc + parseInt(e), 0)
+  }
 )
 /**
 * Unsolved

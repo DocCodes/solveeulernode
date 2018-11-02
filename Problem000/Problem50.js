@@ -179,7 +179,7 @@ const Problem57 = new Problem(
     let dom = BigNum(2)
     let tot = 0
 
-    for (let i = 1; i < 1000; i++) {
+    for (let i = 1; i < 100; i++) {
       num = num.plus(dom.multipliedBy(2))
       dom = num.minus(dom)
       if (num.toString().length > dom.toString().length) { tot++ }
