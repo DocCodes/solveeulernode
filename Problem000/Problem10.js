@@ -77,7 +77,7 @@ const Problem12 = new Problem(
   }
 )
 /**
-* 2018-10-20
+* Solved 2018-10-20
 * @type {Problem}
 */
 const Problem13 = new Problem(
@@ -180,7 +180,7 @@ const Problem17 = new Problem(
   }
 )
 /**
-* 2018-10-20
+* Solved 2018-10-20
 * @type {Problem}
 */
 const Problem18 = new Problem(

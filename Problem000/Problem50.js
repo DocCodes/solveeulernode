@@ -49,12 +49,88 @@ const Problem50 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-11-02
 * @type {Problem}
 */
 const Problem51 = new Problem(
   51,
-  function () {}, false
+  function () {
+    const isPrime = (n) => {
+      let flr = Math.sqrt(n)
+      if (n === 0 || n === 1) { return false }
+      for (let j = 2; j <= flr; j++) {
+        if (n % j === 0) { return false }
+      }
+      return true
+    }
+    const fillPattern = (pattern, n) => {
+      let filledPattern = new Array(pattern.length).fill(0)
+
+      for (let i = filledPattern.length - 1; i >= 0; i--) {
+        if (pattern[i] === 1) {
+          filledPattern[i] = n % 10
+          n = Math.floor(n / 10)
+        } else {
+          filledPattern[i] = -1
+        }
+      }
+      return filledPattern
+    }
+    const generateFamilyNumber = (repl, filledPattern) => {
+      let n = 0
+      for (let i = 0; i < filledPattern.length; i++) {
+        n *= 10
+        n += filledPattern[i] === -1 ? repl : filledPattern[i]
+      }
+      return n
+    }
+    const getFamilySize = (repl, pattern) => {
+      let familySize = 1
+
+      for (let i = repl + 1; i < 10; i++) {
+        if (isPrime(generateFamilyNumber(i, pattern))) { familySize++ }
+      }
+      return familySize
+    }
+    let fivePatterns = [
+      [1, 0, 0, 0, 1],
+      [0, 1, 0, 0, 1],
+      [0, 0, 1, 0, 1],
+      [0, 0, 0, 1, 1]
+    ]
+    let sixPatterns = [
+      [1, 1, 0, 0, 0, 1],
+      [1, 0, 1, 0, 0, 1],
+      [1, 0, 0, 1, 0, 1],
+      [1, 0, 0, 0, 1, 1],
+      [0, 1, 1, 0, 0, 1],
+      [0, 1, 0, 1, 0, 1],
+      [0, 1, 0, 0, 1, 1],
+      [0, 0, 1, 1, 0, 1],
+      [0, 0, 1, 0, 1, 1],
+      [0, 0, 0, 1, 1, 1]
+    ]
+    let result = 2147483647
+
+    for (let i = 11; i < 1000; i += 2) {
+      if (i % 5 === 0) { continue }
+      let patterns = i < 100 ? fivePatterns : sixPatterns
+
+      for (let pat of patterns) {
+        for (let k = 0; k < 3; k++) {
+          if (pat[0] === 0 && k === 0) { continue }
+          let pattern = fillPattern(pat, i)
+          let cand = generateFamilyNumber(k, pattern)
+
+          if (cand < result && isPrime(cand)) {
+            if (getFamilySize(k, pattern) === 8) { result = cand }
+            break
+          }
+        }
+      }
+    }
+    return result
+  }
 )
 /**
 * Solved 2018-10-30

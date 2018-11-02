@@ -193,12 +193,23 @@ const Problem66 = new Problem(
   function () {}, false
 )
 /**
-* Unsolved
+* Solved 2018-11-02
 * @type {Problem}
 */
 const Problem67 = new Problem(
   67,
-  function () {}, false
+  function () {
+    let tri = this.loadResources()
+    while (tri.length !== 1) {
+      let crow = tri[tri.length - 2]
+      let nrow = tri[tri.length - 1]
+      for (let i = 0; i < crow.length; i++) {
+        crow[i] = crow[i] + Math.max(...nrow.slice(i, i + 2))
+      }
+      tri.pop()
+    }
+    return tri[0][0]
+  }
 )
 /**
 * Unsolved

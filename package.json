@@ -1,6 +1,6 @@
 {
   "name": "SolveEulerNode",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Node Solutions for ProjectEuler.net",
   "main": "index.js",
   "scripts": {

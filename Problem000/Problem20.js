@@ -65,7 +65,7 @@ const Problem22 = new Problem(
   }
 )
 /**
-* 2018-10-21
+* Solved 2018-10-21
 * @type {Problem}
 */
 const Problem23 = new Problem(
