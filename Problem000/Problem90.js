@@ -95,7 +95,7 @@ const Problem98 = new Problem(
   function () {}, false
 )
 /**
-* unsolved
+* Unsolved
 * @type {Problem}
 */
 const Problem99 = new Problem(
