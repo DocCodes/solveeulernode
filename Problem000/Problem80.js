@@ -75,12 +75,45 @@ const Problem88 = new Problem(
   function () {}, false
 )
 /**
-* Unsolved
+* Solved 2018-11-06
 * @type {Problem}
 */
 const Problem89 = new Problem(
   89,
-  function () {}, false
+  function () {
+    const numToRoman = (n) => {
+      let lookup = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 }
+      let roman = ''
+      Object.keys(lookup).forEach(k => {
+        while (n >= lookup[k]) {
+          roman += k
+          n -= lookup[k]
+        }
+      })
+      return roman
+    }
+    const romanToNum = (roman) => {
+      let lookup = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 }
+      let n = 0
+      Object.keys(lookup).forEach(k => {
+        while (roman.indexOf(k) === 0) {
+          n += lookup[k]
+          roman = roman.replace(k, '')
+        }
+      })
+      return n
+    }
+    let numerals = this.loadResources()
+    let tot = 0
+
+    for (let n of numerals) {
+      let val = romanToNum(n)
+      let opt = numToRoman(val)
+      let sav = n.length - opt.length
+      tot += sav
+    }
+    return tot
+  }, false
 )
 
 module.exports = [

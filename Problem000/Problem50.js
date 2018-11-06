@@ -189,12 +189,38 @@ const Problem53 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-11-06
 * @type {Problem}
 */
 const Problem54 = new Problem(
   54,
-  function () {}, false
+  function () {
+    let hands = this.loadResources()
+    let values = {}
+    let straights = new Array(10).fill(new Array(5).fill(0)).map((e, i) => e.map((a, j) => j + i + 1))
+    let ranks = [[1, 1, 1, 1, 1], [2, 1, 1, 1], [2, 2, 1], [3, 1, 1], [], [], [3, 2], [4, 1]]
+    '23456789TJQKA'.split('').forEach((e, i) => { values[e] = i + 2 })
+    straights[0][0] = 14
+    straights = straights.map(e => e.sort((a, b) => a < b ? 1 : -1))
+    straights = straights.reverse()
+    const rankHand = (h) => {
+      let score = h.map(e => values[e[0]])
+      let scoreSet = Array.from(new Set(score))
+      score = [scoreSet.map(e => score.reduce((acc, a) => acc + (a === e ? 1 : 0), 0)), scoreSet]
+      ranks.forEach((e, i) => { if (JSON.stringify(e) === JSON.stringify(score[0])) { score[0] = i } })
+      if (new Set(h.map(e => e[1])).size === 1) { score[0] = 5 }
+      if (straights.map(e => JSON.stringify(e)).includes(JSON.stringify(score[1].sort((a, b) => a < b ? 1 : -1)))) { score[0] = score[0] === 5 ? 8 : 4 }
+      return score
+    }
+    let tot = -6
+
+    for (let h of hands) {
+      if (rankHand(h[0]) > rankHand(h[1])) {
+        tot++
+      }
+    }
+    return tot
+  }, false
 )
 /**
 * Solved 2018-10-30
