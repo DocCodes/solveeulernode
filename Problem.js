@@ -14,13 +14,12 @@ class Problem {
   }
 
   printSolution () {
-    if (this.solved) {
-      let start = moment()
-      console.log(`Solution: ${this.solution()}`)
-      console.log(`Solution Took: ${moment.duration(moment() - start, 'milliseconds').format('S [ms]')}`)
-    } else {
-      console.log(`Solution: Unsolved`)
-    }
+    let start = moment()
+    let solution = this.solution()
+    let end = moment()
+    let diff = end - start
+    console.log(`Solution: ${solution}`)
+    console.log(`Solution Took: ${moment.duration(diff, 'milliseconds').format('S [ms]')}`)
   }
 
   loadResources () {

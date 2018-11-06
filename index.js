@@ -7,12 +7,14 @@ const commandLineUsage = require('command-line-usage')
 // </region>
 
 // <region> Load Problems
-var problems = []
+var problems = {}
 let problemHundreds = fs.readdirSync('.').filter((e) => e.match(/^Problem\d{3}$/))
 for (let dir of problemHundreds) {
   let problemTens = fs.readdirSync(`./${dir}`).filter((e) => e.match(/^Problem\d{2}.js$/))
-  for (let p of problemTens) {
-    problems = [...problems, ...require(`./${dir}/${p}`)]
+  for (let pT of problemTens) {
+    for (let p of require(`./${dir}/${pT}`)) {
+      problems[p.id] = p
+    }
   }
 }
 // </region>
@@ -41,23 +43,21 @@ const usage = commandLineUsage([
 if (args.help) {
   console.log(usage)
 } else if (args.stats) {
-  let solved = problems.reduce((acc, e) => acc + (e.solved ? 1 : 0), -1)
-  let total = 640
+  let solved = Object.values(problems).reduce((acc, e) => acc + (e.solved ? 1 : 0), -1)
+  let total = 641
   console.log(`Level: ${Math.floor(solved / 25)}`)
   console.log(`Solved: ${solved}`)
   console.log(`Total: ${total}`)
-  console.log(`Percent: ${(solved / total * 100).toFixed(2)}%`)
+  console.log(`Percent: ${(solved / total * 100).toFixed(1)}%`)
 } else if (args.url) {
-  if (args.url >= 1 && args.url <= problems.length) {
+  if (Object.keys(problems).includes(args.url.toString())) {
     let prob = problems[args.url]
     prob.printURL()
   }
 } else if (args.problem) {
-  if (args.problem) {
-    if (args.problem >= 1 && args.problem <= problems.length) {
-      let prob = problems[args.problem]
-      prob.printSolution()
-    }
+  if (Object.keys(problems).includes(args.problem.toString())) {
+    let prob = problems[args.problem]
+    prob.printSolution()
   }
 } else {
   console.log(usage)

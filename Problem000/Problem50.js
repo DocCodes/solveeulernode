@@ -291,12 +291,50 @@ const Problem58 = new Problem(
   }
 )
 /**
-* Unsolved
+* Solved 2018-11-05
 * @type {Problem}
 */
 const Problem59 = new Problem(
   59,
-  function () {}, false
+  function () {
+    const isEnglishXOR = (a, b) => {
+      let xor = a ^ b
+      if (xor >= 32 && xor <= 90) { return true }
+      if (xor >= 97 && xor <= 122) { return true }
+      return false
+    }
+    const getLetter = (n, cipher) => {
+      let ret = new Set()
+      for (let i = 97; i < 123; i++) {
+        for (let j = n; j < cipher.length; j += 3) {
+          ret.add(i)
+          if (!isEnglishXOR(cipher[j], i)) {
+            ret.delete(i)
+            break
+          }
+        }
+      }
+      return String.fromCharCode(Array.from(ret)[0])
+    }
+    const decypher = (code, cipher) => {
+      let ret = []
+      code = code.split('').map(e => e.charCodeAt())
+      for (let i = 0; i < code.length; i++) {
+        for (let j = i; j < cipher.length; j += 3) {
+          ret.push(cipher[j] ^ code[i])
+        }
+      }
+      return ret
+    }
+    let cipher = this.loadResources()
+    let code = []
+    code.push(getLetter(0, cipher))
+    code.push(getLetter(1, cipher))
+    code.push(getLetter(2, cipher))
+    code = code.join('')
+
+    return decypher(code, cipher).reduce((acc, e) => acc + e, 0)
+  }
 )
 
 module.exports = [

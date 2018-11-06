@@ -113,7 +113,7 @@ const Problem61 = new Problem(
         }
       }
     }
-  }
+  }, false
 )
 /**
 * Solved 2018-11-02
