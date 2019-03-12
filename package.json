@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DocCodes/euler.git"
+    "url": "git+https://github.com/evaneliasyoung/euler.git"
   },
   "bugs": {
-    "url": "https://github.com/DocCodes/euler/issues"
+    "url": "https://github.com/evaneliasyoung/euler/issues"
   },
-  "homepage": "https://github.com/DocCodes/euler#readme",
+  "homepage": "https://github.com/evaneliasyoung/euler#readme",
   "keywords": [
     "node",
     "euler",
